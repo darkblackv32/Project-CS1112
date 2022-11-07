@@ -1,0 +1,2 @@
+gandalf:
+	g++ main.cpp CAlimento.h CAlimento.cpp CMago.h CMago.cpp CAbarrote.h CAbarrote.cpp CLembas.h CLembas.cpp CManzana.h CManzana.cpp CHoneyCake.h CHoneyCake.cpp CMelon.h CMelon.cpp CHongos.h CHongos.cpp COtros.h COtros.cpp -std=c++17 && ./a.out && rm ./a.out
