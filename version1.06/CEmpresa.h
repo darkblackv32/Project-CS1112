@@ -54,5 +54,6 @@ public:
 
   void reporte_peliculas();
   void almacenar_registro();
+  void cerrar_empresa();
 
 };
