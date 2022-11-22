@@ -24,24 +24,28 @@
     if (opcion == 2) {
         string signo;
         int anio_referencia;
-        cout<<"Ingrese su anio de refrencia: "<<endl;
-        cin>>anio_referencia;
-        cout<<"Mayor(>=) o Menor(<=): "<<endl;
-        cin>>signo;
+        cout<<"- Ingrese el año de la pelicula como referencia: "; cin>>anio_referencia;
+        cout<<"- Desea ver las peliculas con un año de referencia mayor(>=) o menor(<=): "; cin>>signo;
 
        if(Signo(signo)){
+          cout << "------------------------------------------------------" << endl;
+          cout<<"- Peliculas con año de referencia mayor o igual a "<<anio_referencia<<endl;
+          cout << "------------------------------------------------------" << endl;
            for (int i = 0; i < Peliculas.size(); i++) {
                ejemplo = Peliculas[i]->get_publicacion();
                if(anio_referencia<=stoi(ejemplo)){
-                   cout<<Peliculas[i]->get_nombre()<<endl;
+                   cout<<"- "<<Peliculas[i]->get_nombre()<<endl;
                }
            }
        }
        else{
+          cout << "------------------------------------------------------" << endl;
+          cout<<"- Peliculas con año de referencia menor o igual a "<<anio_referencia<<endl;
+          cout << "------------------------------------------------------" << endl;
            for (int i = 0; i < Peliculas.size(); i++) {
                ejemplo = Peliculas[i]->get_publicacion();
                if(anio_referencia>=stoi(ejemplo)){
-                   cout<<Peliculas[i]->get_nombre()<<endl;
+                   cout<<"- "<<Peliculas[i]->get_nombre()<<endl;
                }
            }
        }
@@ -49,24 +53,28 @@
     }
     if (opcion == 3) {
       int rank;
-      cout<<"Ingrese el ranking: "<<endl;
-      cin>>rank;
+      cout<<"Ingrese el ranking de la pelicula como referencia: "; cin>>rank;
       string signo;
-      cout<<"Mayor(>=) o Menor(<=): "<<endl;
-      cin>>signo;
+      cout<<"Desea ver las peliculas con un ranking de referencia mayor(>=) o menor(<=): "; cin>>signo;
       if(Signo(signo)){
+          cout << "------------------------------------------------------" << endl;
+          cout<<"- Peliculas con ranking de referencia mayor o igual a "<<rank<<endl;
+          cout << "------------------------------------------------------" << endl;
           for (int i = 0; i < Peliculas.size(); i++) {
                 ejemplo = Peliculas[i]->get_ranking();
                 if(rank<=stoi(ejemplo)){
-                    cout<<Peliculas[i]->get_nombre()<<endl;
+                    cout<<"- "<<Peliculas[i]->get_nombre()<<endl;
                 }
             }
         }
       else{
+          cout << "------------------------------------------------------" << endl;
+          cout<<"- Peliculas con ranking de referencia menor o igual a "<<rank<<endl;
+          cout << "------------------------------------------------------" << endl;
           for (int i = 0; i < Peliculas.size(); i++) {
               ejemplo = Peliculas[i]->get_ranking();
               if(rank>=stoi(ejemplo)){
-                  cout<<Peliculas[i]->get_nombre()<<endl;
+                  cout<<"- "<<Peliculas[i]->get_nombre()<<endl;
               }
             }
         }
@@ -113,7 +121,7 @@
 
   void empresa::mostrar_usuarios() {
     for (int i = 0; i < Usuarios.size(); i++) {
-      cout << Usuarios[i]->get_nombre() << " " << Usuarios[i]->get_dni()
+      cout <<"Nombre: "<< Usuarios[i]->get_nombre() << " - DNI: " << Usuarios[i]->get_dni()
            << endl;
     }
   }
@@ -128,39 +136,48 @@
 
     int num = Usuarios.size() + 1;
     string nombre, apellido, dni;
-
-    cout << "Nombre\n";
-    cin >> nombre;
-    cout << "\nApellido\n";
-    cin >> apellido;
-    do{cout << "\nDni\n";
-    cin >> dni;}while(dni.length() != 8);
-    
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Usted esta registrando a un usuario " << endl;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "- Ingrese el nombre del usuario: "; cin >> nombre;
+    cout << "- Ingrese el apellido del usuario: "; cin >> apellido;
+    cout << "- Ingrese el DNI del usuario: "; cin >> dni;
     Usuarios.push_back(new Usuario(nombre, apellido, dni));
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "El usuario se registro correctamente!!!" << endl;
   }
+
   void empresa::registrar_pelicula() {
     string nombre;
     string publicacion;
     int ejemplares = 0;
     cin.ignore();
-
-    cout << "Nombre\n";
-    getline(cin, nombre);
-    cout << "\nPublicacion\n";
-    getline(cin, publicacion);
-    cout << "\nEjemplares\n";
-    cin >> ejemplares;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Usted esta registrando una pelicula... " << endl;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "- Nombre de la pelicula: ";     getline(cin, nombre);
+    cout << "- Fecha de publicacion: ";        getline(cin, publicacion);
+    cout << "- Cantidad de ejemplares: ";    cin >> ejemplares;
     // peliculas.emplace_back(nombre,publicacion,ejemplares);
     Peliculas.push_back(new Pelicula(nombre, publicacion, ejemplares));
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Pelicula registrada con exito!!!" << endl;
   }
+
   void empresa::peliculas_disponibles() {
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Aqui se encuentran las peliculas disponibles: " << endl;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << endl;
+    // Usamos ionmanip para dar formato a la salida
+    // Columnas: Index+1, Nombre, Publicacion, Ranking, # de Ejemplares y ID
+    cout << setw(5) << "#" << setw(20) << "Nombre" << setw(20) << "Publicacion"
+         << setw(20) << "Ranking" << setw(20) << "# de Ejemplares" << setw(20) << "ID" << endl;
     for (int i = 0; i < Peliculas.size(); i++) {
-      cout << endl
-           << i + 1 << ". " << Peliculas[i]->get_nombre() << " :"<<endl;
-        cout <<"Anio publicaciOn: "<< Peliculas[i]->get_publicacion() <<endl;
-        cout <<"Ranking: "<< Peliculas[i]->get_ranking() <<endl;
-        cout <<"Cantidad ejemplares disponibles: "<< Peliculas[i]->get_cantidad_ejemplares() <<endl;
-        cout <<"Id: "<< Peliculas[i]->get_id() << endl;
+      cout << setw(5) << i + 1 << setw(20) << Peliculas[i]->get_nombre() << setw(20)
+           << Peliculas[i]->get_publicacion() << setw(20) << Peliculas[i]->get_ranking()
+           << setw(20) << Peliculas[i]->get_cantidad_ejemplares() << setw(20)
+           << Peliculas[i]->get_id() << endl;
     }
   }
 
@@ -192,6 +209,9 @@
   }
   void empresa::alquilar_pelicula() {
     string carnet;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Usted esta alquilando una pelicula... " << endl;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
     cout << "Ingresar DNI:";
     cin >> carnet; //carnet = DNI
     int peli;
@@ -199,19 +219,20 @@
     int tiempo_renta;
     float dinero;
     if (dni_search(carnet) == -1) {//si el dni es de algun Usuario ya registrado
+      cout << "El usuario no existe, redirigiendo al menu de registro de usuario..." << endl;
       registrar_usuario();
     }
     else if (dni_search(carnet) >= 0) {
       peliculas_disponibles();
-      cout << "Que pelicula desea alquilar?\n";
+      cout << "---------------------------------------------------------" << endl;
+      cout << "Ingrese el numero de la pelicula que desea alquilar: "; cin >> peli;
       cin >> peli;//qué película de las mostradas escoges, la número 1 o 2 o 3...
       peliagudo = peli - 1;//porque el indice en los vectores empieza desde cero.
       //agregando la pelicula al vector del usuario
       //
       Usuarios[dni_search(carnet)]->agregar_pelicula_usuario(Peliculas[peliagudo]->get_nombre(),Peliculas[peliagudo]->get_id());
 
-      cout << "Por cuanto tiempo desea rentarla (dias)?\n";
-      cin >> tiempo_renta;
+      cout << "Por cuantos dias desea alquilar la pelicula?: "; cin >> tiempo_renta;
       dinero = calc_renta(peliagudo, tiempo_renta);
       cout << "El monto a pagar es igual a " << dinero<<" soles."<<endl;
       Peliculas[peliagudo]->peli_alquilada();//setea la cantidad de ejemplares en -1.
@@ -257,20 +278,26 @@
 
             }
         if(acceso){
-            cout << "Nuevo ranking:\n";
+          cout << "Ingrese su calificacion de la pelicula del 0 al 5: ";
+          cin >> nuevo_rank;
+          while (nuevo_rank < 0 || nuevo_rank > 5) {
+            cout << "Ingrese un numero valido: ";
             cin >> nuevo_rank;
-            Peliculas[indice]->set_ranking(nuevo_rank);
-            cout << "Esta de acuerdo con la devolucion?\n";
-            cout << "1. Si.\n";
-            cout << "2. No.\n";
+          }
+          peli->set_ranking(nuevo_rank);
+          cout << "Esta seguro de que quiere devolver la pelicula? (1 = Si, 2 = No): ";
+          cin >> opcion;
+          while (opcion < 1 || opcion > 2) {
+            cout << "Ingrese un numero valido: ";
             cin >> opcion;
-            if (opcion == 1) {
-                Peliculas[indice]->devolver();
-                cout << "Devolucion exitosa.\n";
-
-            }
-            else if (opcion == 2) {
-                cout << "--------\n";
+          }
+          cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+          if (opcion == 1) {
+            peli->devolver();
+            cout << "La pelicula fue devuelta con exito!!!" << endl;
+          }
+          if (opcion == 2) {
+            cout << "Se cancelo la devolucion." << endl;
             }
 
         }
@@ -281,18 +308,20 @@
 
   void empresa::devolver_pelicula() {
       string dni;
-      cout<<"Ingrese su dni para verificar que haya alquilado: "<<endl;
-      cin>>dni;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout << "Usted esta devolviendo una pelicula... " << endl;
+    cout << "- - - - - - - - - - - - - - - - - - - - - - - - - - " << endl;
+    cout<<"Ingrese su dni para verificar que haya alquilado: "<<;cin>>dni;
     string indicio;
     int llave; //llave puedes ser 1 o 2, la opcion que escoja el usuario.
 
-    cout << "Ingrese nombre o id de la pelicula a devolver:\n";
+    cout << "Desea devolver la pelicula por el nombre o por su ID? (Ingrese una opcion)\n";
     cout << "1. Nombre\n";
     cout << "2. Id\n";
     cin >> llave;
     cin.ignore();
     if (llave == 1) {
-      cout << "nombre: ";
+      cout << "Nombre de la pelicula a devolver: ";
       getline(cin, indicio);
       //indicio=nombre
       cout<<"op"<<endl;
@@ -308,9 +337,8 @@
       //cout<<"."<<endl;//comprobando
     }
     else if (llave == 2) {
-      cout << "Id: ";
+      cout << "Ingrese el ID: "; getline(cin, indicio);
         int indice=dni_search(dni);
-      getline(cin, indicio);
         if(indice>=0 && Usuarios[indice]->pelicula_pertenece("id",indicio)){
             comprobacion_nombre_id(indicio,llave);
             cant_alquiladas -=1;
@@ -328,7 +356,10 @@
 
 
   void empresa::reporte_peliculas(){
-      cout<<"Reporte: "<<endl;
+      cout << "---------------------------------------------------------" << endl;
+      cout << "Imprimiendo el reporte de la compañia Blockbuster!" << endl;
+      cout << "---------------------------------------------------------" << endl;
+      cout <<endl;      
       cant_alquiladas=Calcular_alquiladas();
       cout<<"Cantidad de peliculas alquiladas: "<<cant_alquiladas<<endl;
       cant_disponibles=Calcular_disponibles();//ejecutamos estas funciones aquí porque
