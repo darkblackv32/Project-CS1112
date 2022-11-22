@@ -370,3 +370,21 @@
 
   }
 
+  void empresa::cerrar_empresa(){
+      char filename[] = "C:\\Users\\Camila\\CLionProjects\\VILLACHAMOYPOU\\registro.txt";
+
+      // deletes the file if it exists
+      int result = remove(filename);
+
+      // check if file has been deleted successfully
+      if (result != 0) {
+          // print error message
+          cerr << "File deletion failed";
+      }
+      else {
+          cout << "File deleted successfully";
+
+
+      }
+  }
+
