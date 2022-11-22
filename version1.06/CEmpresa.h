@@ -1,6 +1,9 @@
 #include "CPelicula.h"
 #include <fstream>
 #include <iomanip>
+#include <cstdio>
+#include "FuncionSIGNO.h"
+
 
 class empresa {
 private:
